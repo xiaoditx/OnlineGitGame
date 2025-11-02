@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git冒险 - 交互式学习游戏</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light">
+    <header>
+        <div class="container">
+            <h1>Git冒险</h1>
+            <nav>
+                <ul>
+                    <li><a href="#levels">关卡</a></li>
+                    <li><a href="#commands" id="commands-toggle">命令列表</a></li>
+                    <li><a href="https://xiaoditx.github.io/" target="_blank">项目主页</a></li>
+                </ul>
+                <button id="theme-toggle" aria-label="切换主题">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section id="level-selector" class="hidden">
+                <h2>选择关卡</h2>
+                <div id="levels-container" class="levels-grid">
+                    <!-- 关卡列表将通过JavaScript动态生成 -->
+                </div>
+            </section>
+
+            <section id="game-container" class="hidden">
+                <div class="game-header">
+                    <h2 id="level-title">关卡名称</h2>
+                    <button id="back-to-levels" class="btn">返回关卡选择</button>
+                </div>
+
+                <div class="game-content">
+                    <div class="level-description">
+                        <h3>任务描述</h3>
+                        <div id="level-description-text">
+                            <!-- 关卡描述将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+
+                    <div class="terminal-container">
+                        <div class="terminal-header">
+                            <span class="terminal-title">Git终端</span>
+                            <div class="terminal-buttons">
+                                <span class="terminal-button close"></span>
+                                <span class="terminal-button minimize"></span>
+                                <span class="terminal-button maximize"></span>
+                            </div>
+                        </div>
+                        <div class="terminal" id="terminal">
+                            <div id="terminal-output"></div>
+                            <div class="terminal-input">
+                                <span class="prompt">$</span>
+                                <input type="text" id="command-input" autocomplete="off" spellcheck="false">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="file-explorer">
+                        <h3>文件结构</h3>
+                        <div id="file-tree">
+                            <!-- 文件结构将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="commands-modal" class="modal hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Git命令列表</h2>
+                        <button id="close-commands" class="close-button">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <table id="commands-table">
+                            <thead>
+                                <tr>
+                                    <th>命令</th>
+                                    <th>描述</th>
+                                    <th>示例</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 命令列表将通过JavaScript动态生成 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Git冒险 - 交互式学习游戏 | <a href="https://xiaoditx.github.io/" target="_blank">项目主页</a></p>
+        </div>
+    </footer>
+
+    <script src="levels.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
