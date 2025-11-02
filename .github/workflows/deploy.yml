@@ -1,0 +1,24 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main, master ]  # 当推送到main或master分支时触发
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      # 部署到GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # 部署到gh-pages分支
+          folder: .  # 部署根目录下的所有文件
+          target-folder: pages/LearnGit  # 部署到目标文件夹
+          # 自动使用GitHub提供的GITHUB_TOKEN
+          # 无需额外配置权限，因为这是默认的部署权限
