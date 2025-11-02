@@ -4,15 +4,23 @@ on:
   push:
     branches: [ main, master ]  # 当推送到main或master分支时触发
 
+# 设置必要的权限
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
-      # 检出代码
+      # 检出代码（使用fetch-depth: 0获取完整历史）
       - name: Checkout code
         uses: actions/checkout@v3
-        
+        with:
+          fetch-depth: 0  # 获取完整的提交历史
+      
       # 部署到GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
@@ -20,5 +28,7 @@ jobs:
           branch: gh-pages  # 部署到gh-pages分支
           folder: .  # 部署根目录下的所有文件
           target-folder: pages/LearnGit  # 部署到目标文件夹
-          # 自动使用GitHub提供的GITHUB_TOKEN
-          # 无需额外配置权限，因为这是默认的部署权限
+          clean: true  # 清理目标文件夹中的旧文件
+          force: false  # 不使用强制推送
+          # 明确指定使用GitHub_TOKEN
+          token: ${{ secrets.GITHUB_TOKEN }}
